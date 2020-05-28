@@ -2601,12 +2601,88 @@ const _lstApps = [
 	    }
 	];
 
-const getApps = (req, res) => {
+const _lstConditions = 
+{
+	equals:"===", 
+	great:">",
+	less:"<",
+	greatEquals:">=",
+	lessEquals:"<="
+};
 
+getUserCurrnetAge = (p_birthYear) => 
+{
+	return (new Date().getFullYear() - Number(p_birthYear));
+}
+
+checkFilterCondition = (p_firstValue, p_strCondition, p_secondValue) => 
+{
+	switch (p_strCondition) 
+	{
+		case _lstConditions.equals:
+			return (p_firstValue === p_secondValue);
+		case _lstConditions.greatEquals:
+			return (p_firstValue >= p_secondValue);
+		case _lstConditions.lessEquals:
+			return (p_firstValue <= p_secondValue);
+		case _lstConditions.great:
+			return (p_firstValue > p_secondValue);
+		case _lstConditions.less:
+			return (p_firstValue < p_secondValue);
+		default:
+			return false;
+	}
+}
+
+const getApps = (req, res) => 
+{
 	res.json(_lstApps);
 	//catch(error => {res.status(400).json('error getting the event')});
 };
 
+const handleFilter = (req, res) => 
+{
+	const {birthYear, chosenCategory, minAppRating} = req.body;
+	let filterQuery = {};
+
+	// add filter query for each property you want to filter by
+	if (birthYear)
+	{
+		filterQuery.min_age = {value: getUserCurrnetAge(birthYear), 
+							  condition:_lstConditions.lessEquals};
+	}
+	if(chosenCategory)
+	{
+		filterQuery.category = {value: chosenCategory, 
+								condition:_lstConditions.equals};
+	}
+	if(minAppRating)
+	{
+		filterQuery.rating = {value: Number(minAppRating), 
+							  condition:_lstConditions.greatEquals};
+	}
+	
+	const filteredApps = _lstApps.filter(function(currApp) 
+	{
+	  for (const filterKey in filterQuery) 
+	  {
+	    if (currApp[filterKey] === undefined || 
+	    	!checkFilterCondition(currApp[filterKey], 
+	    						  filterQuery[filterKey].condition, 
+	    						  filterQuery[filterKey].value))
+
+      	{
+      		return false;
+      	}
+	  }
+
+	  return true;
+	});
+
+	res.json(filteredApps);
+};
+
 module.exports = {
-	getApps: getApps
-}
+	getApps: getApps,
+	handleFilter: handleFilter
+};

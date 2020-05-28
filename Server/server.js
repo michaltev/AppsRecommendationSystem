@@ -6,7 +6,10 @@ app.use(cors());
 app.use(express.json());
 const port = 3000;
 
-//const MongoClient = require('mongodb').MongoClient;
+const appsController = require('./controllers/appsController');
+
+app.post('/filter/apps', (req, res) => { appsController.handleFilter(req, res) });
+
 
 app.listen(port, () => {
 	console.log('app is running on port '+port);
