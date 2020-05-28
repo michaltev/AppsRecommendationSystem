@@ -2608,6 +2608,23 @@ getUserCurrnetAge = (p_birthYear) =>
 	return (new Date().getFullYear() - p_birthYear);
 }
 
+getRandomApps = (p_lstApps) => 
+{
+	const firstThirdMaxIndex = Math.floor(p_lstApps.length / 3);
+	const secondThirdMaxIndex = Math.floor(p_lstApps.length * 2 / 3);
+
+	const rndFirstThirdIndex = Math.floor(Math.random() * (firstThirdMaxIndex - 0)) + 0;
+	const rndSecondThirdIndex = Math.floor(Math.random() * (secondThirdMaxIndex - firstThirdMaxIndex)) + firstThirdMaxIndex;
+	const rndLastThirdIndex = Math.floor(Math.random() * (p_lstApps.length - 1 - secondThirdMaxIndex)) + secondThirdMaxIndex;
+	
+	let lstRandomApps = [];
+	lstRandomApps.push(p_lstApps[rndFirstThirdIndex]);
+	lstRandomApps.push(p_lstApps[rndSecondThirdIndex]);
+	lstRandomApps.push(p_lstApps[rndLastThirdIndex]);
+
+	return lstRandomApps;
+}
+
 const getApps = (req, res) => 
 {
 	res.json(_lstApps);
@@ -2636,7 +2653,7 @@ const handleFilter = (req, res) =>
 							  condition:filterLogic.Conditions.greatEquals};
 	}
 	
-	const filteredApps = _lstApps.filter(function(currApp) 
+	let filteredApps = _lstApps.filter(function(currApp) 
 	{
 	  for (const filterKey in filterQuery) 
 	  {
@@ -2652,6 +2669,11 @@ const handleFilter = (req, res) =>
 
 	  return true;
 	});
+
+	if(filteredApps.length > 3)
+	{
+		filteredApps = getRandomApps(filteredApps);	
+	}
 
 	res.json(filteredApps);
 };
