@@ -1,3 +1,5 @@
+const filterLogic = require('../generalLogic/filterLogic');
+
 const _lstApps = [
 	    {
 	        "id": 301,
@@ -2601,37 +2603,9 @@ const _lstApps = [
 	    }
 	];
 
-const _lstConditions = 
-{
-	equals:"===", 
-	great:">",
-	less:"<",
-	greatEquals:">=",
-	lessEquals:"<="
-};
-
 getUserCurrnetAge = (p_birthYear) => 
 {
-	return (new Date().getFullYear() - Number(p_birthYear));
-}
-
-checkFilterCondition = (p_firstValue, p_strCondition, p_secondValue) => 
-{
-	switch (p_strCondition) 
-	{
-		case _lstConditions.equals:
-			return (p_firstValue === p_secondValue);
-		case _lstConditions.greatEquals:
-			return (p_firstValue >= p_secondValue);
-		case _lstConditions.lessEquals:
-			return (p_firstValue <= p_secondValue);
-		case _lstConditions.great:
-			return (p_firstValue > p_secondValue);
-		case _lstConditions.less:
-			return (p_firstValue < p_secondValue);
-		default:
-			return false;
-	}
+	return (new Date().getFullYear() - p_birthYear);
 }
 
 const getApps = (req, res) => 
@@ -2648,18 +2622,18 @@ const handleFilter = (req, res) =>
 	// add filter query for each property you want to filter by
 	if (birthYear)
 	{
-		filterQuery.min_age = {value: getUserCurrnetAge(birthYear), 
-							  condition:_lstConditions.lessEquals};
+		filterQuery.min_age = {value: getUserCurrnetAge(Number(birthYear)), 
+							  condition:filterLogic.Conditions.lessEquals};
 	}
 	if(chosenCategory)
 	{
 		filterQuery.category = {value: chosenCategory, 
-								condition:_lstConditions.equals};
+								condition:filterLogic.Conditions.equals};
 	}
 	if(minAppRating)
 	{
 		filterQuery.rating = {value: Number(minAppRating), 
-							  condition:_lstConditions.greatEquals};
+							  condition:filterLogic.Conditions.greatEquals};
 	}
 	
 	const filteredApps = _lstApps.filter(function(currApp) 
@@ -2667,9 +2641,9 @@ const handleFilter = (req, res) =>
 	  for (const filterKey in filterQuery) 
 	  {
 	    if (currApp[filterKey] === undefined || 
-	    	!checkFilterCondition(currApp[filterKey], 
-	    						  filterQuery[filterKey].condition, 
-	    						  filterQuery[filterKey].value))
+	    	!filterLogic.checkFilterCondition(currApp[filterKey], 
+				    						  filterQuery[filterKey].condition, 
+				    						  filterQuery[filterKey].value))
 
       	{
       		return false;
