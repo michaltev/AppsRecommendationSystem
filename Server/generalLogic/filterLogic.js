@@ -26,7 +26,8 @@ checkFilterCondition = (p_firstValue, p_strCondition, p_secondValue) =>
 	}
 };
 
-module.exports = {
+module.exports = 
+{
 	Conditions: _lstConditions,
 	checkFilterCondition: checkFilterCondition
 }

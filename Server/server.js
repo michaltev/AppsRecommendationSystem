@@ -14,7 +14,8 @@ app.post('/filter/apps', (req, res) => { appsController.handleFilter(req, res) }
 app.get('/categories', (req, res) => { categoriesController.getCategories(req, res) })
 
 
-app.listen(port, () => {
+app.listen(port, () => 
+{
 	console.log('app is running on port '+port);
 });
 

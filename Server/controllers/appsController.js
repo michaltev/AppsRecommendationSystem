@@ -2656,7 +2656,8 @@ const handleFilter = (req, res) =>
 	res.json(filteredApps);
 };
 
-module.exports = {
+module.exports = 
+{
 	getApps: getApps,
 	handleFilter: handleFilter
 };

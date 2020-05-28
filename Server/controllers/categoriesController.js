@@ -28,10 +28,12 @@ const _lstCategories = [
     "Sports"
 ];
 
-const getCategories = (req, res) => {
+const getCategories = (req, res) => 
+{
 	res.json(_lstCategories);
 };
 
-module.exports = {
+module.exports = 
+{
 	getCategories: getCategories
 }
