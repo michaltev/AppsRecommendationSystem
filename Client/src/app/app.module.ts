@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { AppsRecommenderComponent } from './apps-recommender/apps-recommender.co
     MatTableModule,
     MatSelectModule,
     MatInputModule,
+    MatIconModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
