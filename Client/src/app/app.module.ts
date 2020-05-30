@@ -14,13 +14,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppsFilterFormComponent } from './apps-filter-form/apps-filter-form.component';
 import { AppsTableComponent } from './apps-table/apps-table.component';
 import { AppsRecommenderComponent } from './apps-recommender/apps-recommender.component';
+import { AppInfoComponent } from './app-info/app-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppsFilterFormComponent,
     AppsTableComponent,
-    AppsRecommenderComponent
+    AppsRecommenderComponent,
+    AppInfoComponent
   ],
   imports: [
     BrowserModule,
