@@ -1,8 +1,8 @@
-<P>not here yet</P>
+<h2>Apps</h2>
 
-<table mat-table [apps]="apps" class="mat-elevation-z8" *ngIf="apps && apps.length > 0" >
+<table mat-table [dataSource]="apps" class="mat-elevation-z8" >
 
-    <ng-container matColumnDef="position">
+    <ng-container matColumnDef="icon">
       <th mat-header-cell *matHeaderCellDef> Icon </th>
       <td mat-cell *matCellDef="let element"> {{element.icon}} </td>
     </ng-container>
