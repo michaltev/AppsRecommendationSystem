@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 
-import { Observable } from 'rxjs';
 import { AppsFilterService } from '../data/apps-filter.service';
 import { CategoriesService } from '../data/categories.service';
 
@@ -12,7 +11,8 @@ import { CategoriesService } from '../data/categories.service';
 })
 export class AppsFilterFormComponent implements OnInit {
 
-  filter: Object = {};
+  @Output() filterQuery = new EventEmitter<object>();
+  filter:object={};
   categories: [];
   
   constructor(private svc:AppsFilterService, private categoriesService:CategoriesService) { }
@@ -27,7 +27,9 @@ export class AppsFilterFormComponent implements OnInit {
 
   onSubmit(form: NgForm){
    console.log("in onSubmit: ", form.value);
-   this.svc.filterApps(this.filter);
+
+   this.filterQuery.emit(this.filter);
+   //this.svc.filterApps(this.filter);
   }
 
 }

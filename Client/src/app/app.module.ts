@@ -12,12 +12,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppsFilterFormComponent } from './apps-filter-form/apps-filter-form.component';
 import { AppsTableComponent } from './apps-table/apps-table.component';
+import { AppsRecommenderComponent } from './apps-recommender/apps-recommender.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppsFilterFormComponent,
-    AppsTableComponent
+    AppsTableComponent,
+    AppsRecommenderComponent
   ],
   imports: [
     BrowserModule,
