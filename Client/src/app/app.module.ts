@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { AppsTableComponent } from './apps-table/apps-table.component';
   imports: [
     BrowserModule,
     FormsModule,
+    MatButtonModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
