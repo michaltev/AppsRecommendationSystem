@@ -18,6 +18,7 @@ export class AppsFilterFormComponent implements OnInit {
   constructor(private svc:AppsFilterService, private categoriesService:CategoriesService) { }
 
   ngOnInit(): void {
+    this.filter = {};
     this.categoriesService.getCategories().subscribe(
       result => {this.categories = result; console.log(result);},
       error => console.log('error', error));
