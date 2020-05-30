@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 
-import { AppsFilterService } from '../data/apps-filter.service';
 import { CategoriesService } from '../data/categories.service';
 
 @Component({
@@ -15,21 +14,18 @@ export class AppsFilterFormComponent implements OnInit {
   filter:object={};
   categories: [];
   
-  constructor(private svc:AppsFilterService, private categoriesService:CategoriesService) { }
+  constructor(private categoriesService:CategoriesService) { }
 
   ngOnInit(): void {
     this.filter = {};
     this.categoriesService.getCategories().subscribe(
-      result => {this.categories = result; console.log(result);},
-      error => console.log('error', error));
+      result => this.categories = result,
+      error => console.log('error fetching the categories', error));
   }
 
 
   onSubmit(form: NgForm){
-   console.log("in onSubmit: ", form.value);
-
    this.filterQuery.emit(this.filter);
-   //this.svc.filterApps(this.filter);
   }
 
 }
