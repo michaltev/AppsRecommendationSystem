@@ -2,7 +2,8 @@
 
 <p *ngIf='!apps || apps.length===0'>No apps to display :( Try to filter for great apps recommendations </p>
 
-<table mat-table [dataSource]="apps" class="mat-elevation-z8" *ngIf='apps && apps.length>0'>
+<div class="container" *ngIf='apps && apps.length>0'>
+  <table mat-table [dataSource]="apps" class="mat-elevation-z8">
 
     <ng-container matColumnDef="icon">
       <th mat-header-cell *matHeaderCellDef> Icon </th>
@@ -38,3 +39,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <div>
+    app info
+
+  </div>
+
+</div>
