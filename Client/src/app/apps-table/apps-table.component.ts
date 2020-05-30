@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IApp } from '../data/app';
+import { AppsFilterService } from '../data/apps-filter.service';
 
 @Component({
   selector: 'app-apps-table',
@@ -10,14 +11,14 @@ import { IApp } from '../data/app';
 export class AppsTableComponent implements OnInit {
 
   displayedColumns: string[] = [];
-  dataSource : IApp[] = [];
+  apps : IApp[] = [];
 
-  constructor() {
-    this.displayedColumns = ["icon", "name", "category", "rating", "min_age"];
-  }
+  constructor(private filterService:AppsFilterService) { 
+   }
 
   ngOnInit(): void {
-    
+    this.displayedColumns = ["icon", "name", "category", "rating", "min_age"];
+    this.apps = this.filterService.getApps();
   }
 
 }
