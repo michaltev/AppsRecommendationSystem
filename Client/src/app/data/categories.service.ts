@@ -5,12 +5,22 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AppsService {
+export class CategoriesService {
 
   constructor(private http: HttpClient) { }
 
-  getApps(p_filter : Object) : Observable<any>
+  getCategories() : Observable<any>
   {
-    return (this.http.post('http://localhost:3000/filter/apps', p_filter));
+    return (this.http.get('http://localhost:3000/categories'));
   }
+}
+
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AppsService {
+
+  
 }

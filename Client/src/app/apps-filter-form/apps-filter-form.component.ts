@@ -3,7 +3,7 @@ import { NgForm, NgModel } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 import { AppsFilterService } from '../data/apps-filter.service';
-import { IFilter } from '../data/filter';
+import { CategoriesService } from '../data/categories.service';
 
 @Component({
   selector: 'app-apps-filter-form',
@@ -15,17 +15,18 @@ export class AppsFilterFormComponent implements OnInit {
   filter: Object = {};
   categories: [];
   
-  constructor(private svc:AppsFilterService) { }
+  constructor(private svc:AppsFilterService, private categoriesService:CategoriesService) { }
 
   ngOnInit(): void {
-    // TODO: get categories
-    this.categories = [];
+    this.categoriesService.getCategories().subscribe(
+      result => {this.categories = result; console.log(result);},
+      error => console.log('error', error));
   }
 
 
   onSubmit(form: NgForm){
    console.log("in onSubmit: ", form.value);
-   this.svc.getFilterApps(this.filter);
+   this.svc.filterApps(this.filter);
   }
 
 }
