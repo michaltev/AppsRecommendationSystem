@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { IApp } from '../data/app';
+
 @Component({
   selector: 'app-apps-table',
   templateUrl: './apps-table.component.html',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppsTableComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = [];
+  dataSource : IApp[] = [];
+
+  constructor() {
+    this.displayedColumns = ["icon", "name", "category", "rating", "min_age"];
+  }
 
   ngOnInit(): void {
+    
   }
 
 }
