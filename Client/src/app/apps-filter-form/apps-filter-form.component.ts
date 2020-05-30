@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 
 import { CategoriesService } from '../data/categories.service';
+import { IFilter } from '../data/filter';
 
 @Component({
   selector: 'app-apps-filter-form',
@@ -11,13 +12,16 @@ import { CategoriesService } from '../data/categories.service';
 export class AppsFilterFormComponent implements OnInit {
 
   @Output() filterQuery = new EventEmitter<object>();
-  filter:object={};
+  filter:IFilter = {
+    birthYear:undefined,
+    chosenCategory:undefined,
+    minAppRating:undefined
+  };
   categories: [];
   
   constructor(private categoriesService:CategoriesService) { }
 
   ngOnInit(): void {
-    this.filter = {};
     this.categoriesService.getCategories().subscribe(
       result => this.categories = result,
       error => console.log('error fetching the categories', error));
