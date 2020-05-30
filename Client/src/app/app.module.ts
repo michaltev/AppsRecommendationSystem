@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { AppsTableComponent } from './apps-table/apps-table.component';
     MatButtonModule,
     MatTableModule,
     MatSelectModule,
+    MatInputModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
