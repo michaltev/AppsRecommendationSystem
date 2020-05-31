@@ -11,6 +11,7 @@ export class AppsTableComponent implements OnInit {
 
   displayedColumns: string[] = [];
   @Input() apps : IApp[];
+  chosenApp:IApp;
   imageWidth = 45;
   imageMargin = 1;
 
@@ -19,5 +20,9 @@ export class AppsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.displayedColumns = ["icon", "name", "category", "rating", "min_age"];
+  }
+
+  onRowClick(row:IApp): void{
+    this.chosenApp = row;
   }
 }

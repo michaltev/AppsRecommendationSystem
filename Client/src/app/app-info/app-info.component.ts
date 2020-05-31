@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IApp } from '../data/app';
 
 @Component({
   selector: 'app-app-info',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-info.component.css']
 })
 export class AppInfoComponent implements OnInit {
+
+  @Input() app : IApp;
 
   constructor() { }
 
