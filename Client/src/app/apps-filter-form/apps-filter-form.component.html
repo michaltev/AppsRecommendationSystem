@@ -5,7 +5,7 @@
 
       <div class="form-group">
          <mat-form-field>
-            <label for="birthYear">Birth Year</label>
+            <mat-label for="birthYear">Birth Year</mat-label>
             <input matInput type="number" min="1920" max="2020" 
                   id="birthYear" name="birthYear" 
                   class="form-control" [(ngModel)]='filter.birthYear'>   
@@ -14,7 +14,7 @@
 
       <div class="form-group">
          <mat-form-field>
-            <label for="chosenCategory">Category</label>
+            <mat-label>Preferred Category</mat-label>
             <mat-select id="chosenCategory" name="chosenCategory" [(ngModel)]='filter.chosenCategory'>
                <mat-option *ngFor="let category of categories" [value]="category">
                {{category}}
@@ -25,7 +25,7 @@
 
       <div class="form-group">
          <mat-form-field>
-            <label for="minAppRating">Rating</label>
+            <mat-label for="minAppRating">Minimum App Rating</mat-label>
             <input matInput type="number" min="0" max="5" id="minAppRating" name="minAppRating" class="form-control" [(ngModel)]='filter.minAppRating'>   
          </mat-form-field>
       </div>
