@@ -40,6 +40,8 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)=onRowClick(row)></tr>
   </table>
 
+  <hr>
+
   <app-app-info [app]="chosenApp" *ngIf="chosenApp">
 
   </app-app-info>

@@ -12,6 +12,7 @@ import { IFilter } from '../data/filter';
 export class AppsFilterFormComponent implements OnInit {
 
   @Output() filterQuery = new EventEmitter<object>();
+
   filter:IFilter = {
     birthYear:undefined,
     chosenCategory:undefined,
@@ -26,7 +27,6 @@ export class AppsFilterFormComponent implements OnInit {
       result => this.categories = result,
       error => console.log('error fetching the categories', error));
   }
-
 
   onSubmit(form: NgForm){
    this.filterQuery.emit(this.filter);
