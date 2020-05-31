@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { NgForm, NgModel } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 import { CategoriesService } from '../services/categories.service';
 import { IFilter } from '../interfaces/filter';
@@ -30,6 +30,14 @@ export class AppsFilterFormComponent implements OnInit {
 
   onSubmit(form: NgForm){
    this.filterQuery.emit(this.filter);
+  }
+
+  isValidBirthYear():boolean{
+    return (this.filter.birthYear && this.filter.birthYear >= 1920 && this.filter.birthYear <= 2020);
+  }
+
+  isValidRating():boolean{
+    return (this.filter.minAppRating && this.filter.minAppRating >= 0 && this.filter.minAppRating <= 5);
   }
 
 }

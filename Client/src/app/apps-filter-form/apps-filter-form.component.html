@@ -6,9 +6,13 @@
       <div class="form-group">
          <mat-form-field>
             <mat-label for="birthYear">Birth Year</mat-label>
-            <input matInput type="number" min="1920" max="2020" 
+            <input matInput type="number" min="1920" max="2020"
                   id="birthYear" name="birthYear" 
-                  class="form-control" [(ngModel)]='filter.birthYear'>   
+                  class="form-control" [(ngModel)]='filter.birthYear'> 
+            
+            <mat-hint *ngIf="filter.birthYear && !isValidBirthYear()">
+               Enter YYYY year format 
+            </mat-hint>
          </mat-form-field>
       </div>
 
@@ -26,11 +30,18 @@
       <div class="form-group">
          <mat-form-field>
             <mat-label for="minAppRating">Minimum App Rating</mat-label>
-            <input matInput type="number" min="0" max="5" id="minAppRating" name="minAppRating" class="form-control" [(ngModel)]='filter.minAppRating'>   
+            <input matInput type="number" min="0" max="5" 
+            id="minAppRating" name="minAppRating" class="form-control" 
+            [(ngModel)]='filter.minAppRating'>   
+
+            <mat-hint *ngIf="filter.minAppRating && !isValidRating()">
+               Enter rating between 0 to 5 
+            </mat-hint>
          </mat-form-field>
       </div>
    
-      <button mat-icon-button color="primary" aria-label="Filter List">
+      <button mat-icon-button color="primary" aria-label="Filter List" 
+      [disabled]="(filter.minAppRating && !isValidRating()) || (filter.birthYear && !isValidBirthYear())">
          <mat-icon>filter_list</mat-icon>
       </button>
     </form>
