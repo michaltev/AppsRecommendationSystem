@@ -1,24 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AppsService } from './apps.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppsFilterService {
 
-  private apps:[];
-
   constructor(private appsService:AppsService) { }
 
-  filterApps(p_filter: Object)
+  filterApps(p_filter: Object):Observable<any>
   {
-    this.appsService.getApps(p_filter).subscribe(
-      result => {this.apps = result; console.log(result);}, 
-      error => console.log('error', error));
-  }
-
-  getApps()
-  {
-    return this.apps;
+    return (this.appsService.getApps(p_filter));
   }
 }

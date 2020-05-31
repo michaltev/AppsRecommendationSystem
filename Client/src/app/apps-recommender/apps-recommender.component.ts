@@ -13,16 +13,13 @@ export class AppsRecommenderComponent implements OnInit {
   constructor(private filterService:AppsFilterService) { }
 
   ngOnInit(): void {
-    this.updateApps();
-  }
-
-  updateApps(): void{
-    this.apps = this.filterService.getApps();
+    this.apps=[];
   }
 
   onFilter(filterQuery:object): void{
-    this.filterService.filterApps(filterQuery);
-    this.updateApps();
+    this.filterService.filterApps(filterQuery).subscribe(
+      result => {this.apps = result}, 
+      error => console.log('error', error));
   }
 
 }
