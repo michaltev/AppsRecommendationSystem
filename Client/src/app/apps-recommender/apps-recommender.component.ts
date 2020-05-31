@@ -19,7 +19,7 @@ export class AppsRecommenderComponent implements OnInit {
   onFilter(filterQuery:object): void{
     this.appService.getApps(filterQuery).subscribe(
       result => {this.apps = result}, 
-      error => console.log('error', error));
+      error => console.log('error fetching the apps', error));
   }
 
 }
