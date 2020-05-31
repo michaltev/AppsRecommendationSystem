@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 
-import { IApp } from '../data/app';
+import { IApp } from '../interfaces/app';
 
 @Component({
   selector: 'app-apps-table',

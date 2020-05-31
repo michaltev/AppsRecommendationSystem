@@ -1,8 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 
-import { CategoriesService } from '../data/categories.service';
-import { IFilter } from '../data/filter';
+import { CategoriesService } from '../services/categories.service';
+import { IFilter } from '../interfaces/filter';
 
 @Component({
   selector: 'app-apps-filter-form',

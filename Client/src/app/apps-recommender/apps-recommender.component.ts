@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppsFilterService } from '../data/apps-filter.service';
-import { IApp } from '../data/app';
+import { IApp } from '../interfaces/app';
+import { AppsService } from '../services/apps.service';
 
 @Component({
   selector: 'app-apps-recommender',
@@ -10,14 +10,14 @@ import { IApp } from '../data/app';
 export class AppsRecommenderComponent implements OnInit {
   apps: IApp[];
 
-  constructor(private filterService:AppsFilterService) { }
+  constructor(private appService:AppsService) { }
 
   ngOnInit(): void {
     this.apps=[];
   }
 
   onFilter(filterQuery:object): void{
-    this.filterService.filterApps(filterQuery).subscribe(
+    this.appService.getApps(filterQuery).subscribe(
       result => {this.apps = result}, 
       error => console.log('error', error));
   }
