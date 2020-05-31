@@ -1,6 +1,9 @@
-<h4>{{app.name}}</h4>
+<h2>{{app.name}}</h2>
+<!--<img src={{app.icon}} >-->
+    <div [innerHTML]=app.description></div>    
     <div>
-        <label><strong>Category:</strong></label> {{ app.category }}
+        <label><strong>Category:</strong></label> 
+        {{ app.category }}
     </div>
     <div>
         <label><strong>Minimum Age:</strong></label>
@@ -9,4 +12,16 @@
     <div>
         <label><strong>Rating:</strong></label>
         {{ app.rating }}
+    </div>
+    <div>
+        <label><strong>Publisher:</strong></label>
+        {{ app.publisher }}
+    </div>
+    <div>
+        <label><strong>Number Of Installs:</strong></label>
+        {{ app.install_count }}
+    </div>
+    <div>
+        <a href={{app.url}}><strong>Download The App</strong></a>
+        
     </div>
