@@ -9,7 +9,7 @@ npm start
 
 To run the client side (port 4200):
 ```
-cd Cliend
+cd Client
 npm install
 npm start
 ```
