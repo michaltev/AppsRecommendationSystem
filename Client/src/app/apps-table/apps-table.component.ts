@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { IApp } from '../data/app';
 
@@ -7,16 +7,21 @@ import { IApp } from '../data/app';
   templateUrl: './apps-table.component.html',
   styleUrls: ['./apps-table.component.css']
 })
-export class AppsTableComponent implements OnInit {
+export class AppsTableComponent implements OnInit, OnChanges {
 
-  displayedColumns: string[] = [];
   @Input() apps : IApp[];
+  
   chosenApp:IApp;
+  displayedColumns: string[] = [];
   imageWidth = 45;
   imageMargin = 1;
 
   constructor() { 
    }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.chosenApp=undefined;
+  }
 
   ngOnInit(): void {
     this.displayedColumns = ["icon", "name", "category", "rating", "min_age"];
